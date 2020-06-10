@@ -18,7 +18,17 @@ if ($this->session->userdata('role_id') === '1') {  ?>
                 <li><a class="nav-link" href="<?php echo base_url('a/slider') ?>"><i class="fas fa-sliders-h"></i> <span>Slider</span></a></li>
                 <li><a class="nav-link" href="blank.html"><i class="far fa-clipboard"></i> <span>Reservation</span></a></li>
                 <li><a class="nav-link" href="<?php echo base_url('a/transaction') ?>"><i class="fas fa-check-double"></i> <span>Transaction</span></a></li>
-                <li><a class="nav-link" href="<?php echo base_url('admin/data_shop') ?>"><i class="fas fa-cart-plus"></i> <span>Shop</span></a></li>
+                <li><a class="nav-link" href="<?php echo base_url('a/shop') ?>"><i class="fas fa-cart-plus"></i> <span>Shop</span></a></li>
+                <li class="nav-item dropdown">
+                    <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Report</span></a>
+                    <ul class="dropdown-menu">
+                        <li><a class="nav-link" href="<?php echo base_url('a/report/day') ?>">A day</a></li>
+                        <li><a class="nav-link" href="<?php echo base_url('a/report/week') ?>">A week</a></li>
+                        <li><a class="nav-link" href="<?php echo base_url('a/report/month') ?>">A month</a></li>
+                        <li><a class="nav-link" href="<?php echo base_url('a/report/year') ?>">A year</a></li>
+                        <li><a class="nav-link" href="<?php echo base_url('a/report/all') ?>">All transaction</a></li>
+                    </ul>
+                </li>
                 <li class="menu-header">Food</li>
                 <li class="nav-item dropdown">
                     <a href="#" class="nav-link has-dropdown" data-toggle="dropdown"><i class="fas fa-columns"></i> <span>Food Menu</span></a>
@@ -102,6 +112,23 @@ if ($this->session->userdata('role_id') === '1') {  ?>
                     <i class="fas fa-rocket"></i> Documentation
                 </a>
             </div>
+        </aside>
+    </div>
+
+<?php } elseif ($this->session->userdata('role_id') === '3') { ?>
+
+    <div class="main-sidebar">
+        <aside id="sidebar-wrapper">
+            <div class="sidebar-brand">
+                <a href="index.html">Restaurant</a>
+            </div>
+            <div class="sidebar-brand sidebar-brand-sm">
+                <a href="index.html">Resto</a>
+            </div>
+            <ul class="sidebar-menu">
+                <li class="menu-header">DASHBOARD</li>
+                <li><a class="nav-link" href="<?= base_url('a/dashboard') ?>"><i class="fas fa-server"></i> <span>Dashboard</span></a></li>
+                <li><a class="nav-link" href="<?= base_url('a/shop') ?>"><i class="far fa-clipboard"></i> <span>Order</span></a></li>
         </aside>
     </div>
 <?php }

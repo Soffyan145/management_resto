@@ -17,53 +17,8 @@ $user = $this->db->get_where('user', ['email' => $this->session->userdata('email
                 </ul>
             </form>
             <ul class="navbar-nav navbar-right">
-                <?php
-                if ($count_transaction > 0) { ?>
-                    <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg beep"><i class="far fa-bell"></i></a>
-                        <div class="dropdown-menu dropdown-list dropdown-menu-right">
-                            <div class="dropdown-header">Notifications
-                            </div>
-                            <div class="dropdown-list-content dropdown-list-icons">
-                                <a href="#" class="dropdown-item dropdown-item-unread">
-                                    <div class="dropdown-item-icon bg-primary text-white">
-                                        <i class="fas fa-code"></i>
-                                    </div>
-                                    <div class="dropdown-item-desc">
-                                        there is a transaction.
-                                        <div class="time text-primary">2 Min Ago</div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="dropdown-footer text-center">
-
-                            </div>
-                        </div>
-                    </li>
-                <?php } elseif ($count_transaction == 0) { ?>
-                    <li class="dropdown dropdown-list-toggle"><a href="#" data-toggle="dropdown" class="nav-link notification-toggle nav-link-lg "><i class="far fa-bell"></i></a>
-                        <div class="dropdown-menu dropdown-list dropdown-menu-right">
-                            <div class="dropdown-header">Notifications
-                            </div>
-                            <div class="dropdown-list-content dropdown-list-icons">
-                                <a href="#" class="dropdown-item dropdown-item-unread">
-                                    <div class="dropdown-item-icon bg-primary text-white">
-                                        <i class="fas fa-code"></i>
-                                    </div>
-                                    <div class="dropdown-item-desc">
-                                        no notifications
-                                        <div class="time text-primary">2 Min Ago</div>
-                                    </div>
-                                </a>
-                            </div>
-                            <div class="dropdown-footer text-center">
-
-                            </div>
-                        </div>
-                    </li>
-                <?php }
-                ?>
                 <li class="dropdown"><a href="#" data-toggle="dropdown" class="nav-link dropdown-toggle nav-link-lg nav-link-user">
-                        <img alt="image" src="<?= base_url('assets/backend/') ?>img/avatar/avatar-1.png" class="rounded-circle mr-1">
+                        <img alt="image" src="<?php echo base_url('assets/backend/img/upload_profile/') . $user['img']; ?>" class="rounded-circle mr-1">
                         <div class="d-sm-none d-lg-inline-block">Hi, <?php echo $user['nama']; ?></div>
                     </a>
                     <div class="dropdown-menu dropdown-menu-right">

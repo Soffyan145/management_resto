@@ -102,13 +102,21 @@ $route['a/profile/update']                  = 'admin/profile_controller/update';
 $route['a/social_media']                    = 'admin/sosmed_controller';
 $route['a/social_media/add']                = 'admin/sosmed_controller/add';
 
+$route['a/transaction']                     = 'admin/invoice';
+$route['a/transaction/end']                 = 'admin/invoice/selesai';
 
-$route['a/shop']                            = 'admin/dashboard';
+$route['a/shop']                            = 'admin/shop_controller';
+
+$route['a/report/all']                      = 'admin/report_controller';
+$route['a/report/day']                      = 'admin/report_controller/day';
+$route['a/report/pdf']                      = 'admin/report_controller/pdf';
+
 $route['a/salary/choose_employee']          = 'admin/data_salary/choose_employee';
 $route['a/logout']                          = 'auth/logout';
 $route['a/profile']                         = 'admin/account_controller';
 $route['a/reservation']                     = 'admin/dashboard';
-$route['a/transaction']                     = 'admin/invoice';
+
+
 
 
 $route['a/block_access']                    = 'admin/block_access';

@@ -5,14 +5,17 @@ class M_invoice extends CI_Model
     public function index()
     {
         date_default_timezone_set('Asia/Jakarta');
+
+        $kode    = $this->input->post('kode');
         $pay        = $this->input->post('pay');
         $message    = $this->input->post('message');
 
         $invoice = array(
             'pay'       => $pay,
             'message'   => $message,
-            'kode'      => 1,
-            'date'      => date('Y-m-d H:i:s')
+            'kode'      => $kode,
+            'date'      => date('Y-m-d H:i:s'),
+            'status'    => 1
         );
 
         $this->db->insert('transaction', $invoice);
@@ -25,12 +28,14 @@ class M_invoice extends CI_Model
                 'nama_menu'         => $menu['name'],
                 'qty'               => $menu['qty'],
                 'price'             => $menu['price'],
+                'purchase'          => $menu['purchase'],
                 'status'            => 1
             );
             $this->db->insert('order', $data);
         }
         return TRUE;
     }
+
     public function get_data()
     {
         $result = $this->db->get('transaction');
@@ -40,6 +45,17 @@ class M_invoice extends CI_Model
             return false;
         }
     }
+
+    public function take_id_invoice($id)
+    {
+        $final = $this->db->where('id', $id)->get('transaction');
+        if ($final->num_rows() > 0) {
+            return $final->result();
+        } else {
+            return false;
+        }
+    }
+
     public function count_transaction()
     {
         $query = $this->db->get('transaction');
@@ -49,6 +65,7 @@ class M_invoice extends CI_Model
             return 0;
         }
     }
+
     function total_rows($q = NULL)
     {
         $this->db->like('id', $q);
@@ -58,6 +75,12 @@ class M_invoice extends CI_Model
         $this->db->from('transaction');
         return $this->db->count_all_results();
     }
+
+    public function update_data($table, $data, $where)
+    {
+        $this->db->update($table, $data, $where);
+    }
+
     public function get_id_invoice($id_invoice)
     {
         $result = $this->db->where('id', $id_invoice)->limit(1)->get('transaction');
@@ -67,6 +90,7 @@ class M_invoice extends CI_Model
             return false;
         }
     }
+
     public function get_id_order($id_invoice)
     {
         $result = $this->db->where('id_invoice', $id_invoice)->get('order');
@@ -75,5 +99,17 @@ class M_invoice extends CI_Model
         } else {
             return false;
         }
+    }
+
+    public function get_kode()
+    {
+        $kode       = "INV";
+        $query      = "SELECT max(kode) as kode_auto from transaction";
+        $data       = $this->db->query($query)->row_array();
+        $max_kode   = $data['kode_auto'];
+        $max_kode2  = (int) substr($max_kode, 6, 3);
+        $kodecount  = $max_kode2 + 1;
+        $kode_auto  = $kode . "-" . sprintf('%03s', $kodecount);
+        return $kode_auto;
     }
 }
